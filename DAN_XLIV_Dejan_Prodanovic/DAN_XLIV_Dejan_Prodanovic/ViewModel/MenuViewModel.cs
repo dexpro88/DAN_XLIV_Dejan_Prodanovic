@@ -35,6 +35,16 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             pizzeriaService = new PizzeriaService();
             PizzaList = pizzeriaService.GetPizzas();
             orederedPizzas = new List<tblPizzaOrder>();
+            ordersOfUser = pizzeriaService.GetOrdersOfGuest(JMBG);
+
+            if (ordersOfUser.Any())
+            {
+                if (ordersOfUser.Last().OrderStatus == "W")
+                {
+                    ViewMakeOrder = Visibility.Hidden;
+                    ViewShowOrder = Visibility.Visible;
+                }
+            }
             this.JMBG = JMBG;
         }
         #endregion
@@ -125,6 +135,11 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
                 OnPropertyChanged("PizzaList");
             }
         }
+
+
+        private List<tblOrder> ordersOfUser;
+         
+
 
         private List<tblPizzaOrder> orederedPizzas;
         public List<tblPizzaOrder> OrederedPizzas
@@ -253,6 +268,13 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             if (!orederedPizzas.Any()||orderConfirmed)
             {
                 return false;
+            }
+            if (ordersOfUser.Any())
+            {
+                if (ordersOfUser.Last().OrderStatus=="W")
+                {
+                    return false;
+                }
             }
             return true;
         }

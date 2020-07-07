@@ -13,10 +13,14 @@ namespace DAN_XLIV_Dejan_Prodanovic.Service
 
         void DeleteOrder(int id);
         void ApproveOrder(int id);
-        List<tblPizzaOrder> GetOrdersOfGuest(string JMBG);
-        List<tblPizzaOrder> GetOrders();
+        List<tblOrder> GetOrdersOfGuest(string JMBG);
+        List<tblOrder> GetOrders();
+        List<tblPizzaOrder> GetPizzaOrdersByOrderID(int orderId);
 
         List<tblPizza> GetPizzas();
+        tblOrder GetOrderByID(int id);
+        void EditOrder(tblOrder order);
+
 
     }
 }
