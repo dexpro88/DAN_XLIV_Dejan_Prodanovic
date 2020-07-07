@@ -1,6 +1,7 @@
 ﻿using DAN_XLIV_Dejan_Prodanovic.Command;
 using DAN_XLIV_Dejan_Prodanovic.Pizza;
 using DAN_XLIV_Dejan_Prodanovic.View;
+using DataAccesLayer.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,16 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
     class OrderViewModel:ViewModelBase
     {
         OrderView orderView = new OrderView();
-     
+        private string JMBG;
+ 
         #region Constructors
-        public OrderViewModel(OrderView orderViewOpen, List<PizzaClass>pizzas,decimal totalAmountPar)
+        public OrderViewModel(OrderView orderViewOpen, List<PizzaClass>pizzas,decimal totalAmountPar,string JMBG)
         {
             orderView = orderViewOpen;
             PizzaList = pizzas;
             
-            totalAmount = String.Format("Total order amount: {0}", totalAmountPar);
-
+            totalAmount = String.Format("Total order price: {0}", totalAmountPar);
+            this.JMBG = JMBG;
         }
         #endregion
 
@@ -85,7 +87,16 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
+                Order order = new Order();
+                order.ID = 1;
+                order.JMBG = JMBG;
+                order.DateAndTimeOfOrder = DateTime.Now;
+                order.Status = "W";
                 OrderConfirmed = true;
+                foreach (var pizza in pizzaList)
+                {
+                   
+                }
                 orderView.Close();
 
             }
@@ -116,7 +127,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-
+                
                 orderView.Close();
 
             }

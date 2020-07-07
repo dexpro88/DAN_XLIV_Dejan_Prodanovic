@@ -67,14 +67,14 @@
                                     Binding="{Binding Price}" />
 
 
-                <DataGridTemplateColumn Header="Amount">
+                <!--<DataGridTemplateColumn Header="Amount">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <!--<TextBox Width="50" Text="{Binding Amount , RelativeSource= {RelativeSource FindAncestor,
+                            --><!--<TextBox Width="50" Text="{Binding Amount , RelativeSource= {RelativeSource FindAncestor,
                                        AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}" />-->
                             
                             <!--<TextBox Width="50" Text="{Binding Path=DataContext.Amount,RelativeSource={ RelativeSource FindAncestor,
-                                AncestorType=={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"></TextBox>-->
+                                AncestorType=={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"></TextBox>--><!--
                             <TextBox Width="100"
                                     Height="20"
                                     Text="{Binding Path=DataContext.CurrentAmount, RelativeSource= {RelativeSource FindAncestor,
@@ -82,7 +82,7 @@
                                       />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
                 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -100,8 +100,13 @@
         <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-
-            <TextBlock Foreground="White" Text="{Binding TotalAmount}"></TextBlock>
+            <Label Visibility="{Binding ViewMakeOrder, UpdateSourceTrigger=PropertyChanged}" Foreground="White">Amount:</Label>
+            <TextBox Visibility="{Binding ViewMakeOrder, UpdateSourceTrigger=PropertyChanged}" Width="50" 
+                     Text="{Binding CurrentAmount}" Margin="3" />
+            <TextBlock Visibility="{Binding ViewMakeOrder, UpdateSourceTrigger=PropertyChanged}" Margin="3"
+                       Foreground="White" Text="{Binding TotalAmount}"></TextBlock>
+            <TextBlock Visibility="{Binding ViewShowOrder, UpdateSourceTrigger=PropertyChanged}" Margin="3"
+                       Foreground="White" Text="Your order is waiting for approval."></TextBlock>
         </StackPanel>
        
         <StackPanel Grid.Row="4"

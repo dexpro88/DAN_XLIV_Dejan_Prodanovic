@@ -27,10 +27,10 @@ namespace DAN_XLIV_Dejan_Prodanovic.View
             
 
         }
-        public OrderView(List<PizzaClass>pizzas,decimal totalAmount)
+        public OrderView(List<PizzaClass>pizzas,decimal totalAmount,string JMBG)
         {
             InitializeComponent();
-            DataContext = new OrderViewModel(this, pizzas, totalAmount);
+            DataContext = new OrderViewModel(this, pizzas, totalAmount, JMBG);
 
         }
     }

@@ -15,7 +15,8 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
     {
         MenuView menuView;
         private decimal totalAmountNum = 0;
-
+        private bool orderConfirmed = false;
+        private string JMBG;
 
         #region Constructors
         public MenuViewModel(MenuView menuViewOpen)
@@ -23,6 +24,14 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             menuView = menuViewOpen;
             PizzaList = PizzaMetod.GetPizzas();
             orederedPizzas = new List<PizzaClass>();
+        }
+
+        public MenuViewModel(MenuView menuViewOpen,string JMBG)
+        {
+            menuView = menuViewOpen;
+            PizzaList = PizzaMetod.GetPizzas();
+            orederedPizzas = new List<PizzaClass>();
+            this.JMBG = JMBG;
         }
         #endregion
 
@@ -65,7 +74,8 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             set
             {
                 currentAmount = value;
-               
+                OnPropertyChanged("CurrentAmount");
+
             }
         }
 
@@ -173,12 +183,10 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
                 totalAmountNum += (CurrentAmount * SelectedPizza.Price);
                 OrederedPizzas.Add(newPizza);
                  
-                TotalAmount = string.Format("Total order amount {0}", totalAmountNum);
+                TotalAmount = string.Format("Total order price {0}", totalAmountNum);
                 string outputStr = string.Format("Your order will contain {0} {1}", CurrentAmount, SelectedPizza.Name);
                 CurrentAmount = 0;
                 MessageBox.Show(outputStr);
-
-                
 
             }
             catch (Exception ex)
@@ -188,7 +196,10 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         }
         private bool CanAddToOrderExecute()
         {
-            
+            if (orderConfirmed)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -209,13 +220,14 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                OrderView orderView = new OrderView(orederedPizzas, totalAmountNum);
+                OrderView orderView = new OrderView(orederedPizzas, totalAmountNum,JMBG);
                 orderView.ShowDialog();
 
                 if ((orderView.DataContext as OrderViewModel).OrderConfirmed == true)
                 {
                     ViewMakeOrder = Visibility.Hidden;
                     ViewShowOrder = Visibility.Visible;
+                    orderConfirmed = true;
                 }
 
 
@@ -227,7 +239,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         }
         private bool CanMakeOrderExecute()
         {
-            if (!orederedPizzas.Any())
+            if (!orederedPizzas.Any()||orderConfirmed)
             {
                 return false;
             }
@@ -251,7 +263,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                ShowOrderView orderView = new ShowOrderView(orederedPizzas, totalAmountNum);
+                ShowOrderView orderView = new ShowOrderView(orederedPizzas, totalAmountNum,JMBG);
                 orderView.ShowDialog();
 
                 

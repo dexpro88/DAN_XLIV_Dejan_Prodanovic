@@ -23,9 +23,14 @@ namespace DAN_XLIV_Dejan_Prodanovic.View
         public GuestMainView()
         {
             InitializeComponent();
-            DataContext = new GuestMainViewModel(this);
         }
 
-        
+        public GuestMainView(string JMBG)
+        {
+            InitializeComponent();
+            DataContext = new GuestMainViewModel(this,JMBG);
+        }
+
+
     }
 }

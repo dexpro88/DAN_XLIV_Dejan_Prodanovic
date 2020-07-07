@@ -62,8 +62,6 @@
                                     Binding="{Binding Amount}" />
 
 
-
-
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="3"

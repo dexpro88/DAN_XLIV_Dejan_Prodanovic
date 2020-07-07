@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer.Model
 {
-    class PizzaOrder
+    public class PizzaOrder
     {
         public int ID { get; set; }
         public Pizza Pizza { get; set; }

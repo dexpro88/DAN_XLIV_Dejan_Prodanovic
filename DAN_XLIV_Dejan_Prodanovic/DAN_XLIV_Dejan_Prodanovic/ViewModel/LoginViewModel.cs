@@ -57,7 +57,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
                 string password = (obj as PasswordBox).Password;
                 if (ValidationClass.JMBGisValid(UserName) && password.Equals("Gost"))
                 {
-                    GuestMainView guestMain = new GuestMainView();
+                    GuestMainView guestMain = new GuestMainView(UserName);
                     view.Close();
                     guestMain.Show();
                     return;

@@ -14,10 +14,12 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
     {
 
         GuestMainView guestMainView;
+        private string JMBG;
         #region Constructors
-        public GuestMainViewModel(GuestMainView guestMainViewOpen)
+        public GuestMainViewModel(GuestMainView guestMainViewOpen,string JMBG)
         {
             guestMainView = guestMainViewOpen;
+            this.JMBG = JMBG;
         }
         #endregion
 
@@ -39,7 +41,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                MenuView menuView = new MenuView();           
+                MenuView menuView = new MenuView(JMBG);           
                 menuView.Show();
                 guestMainView.Close();
             }

@@ -25,5 +25,11 @@ namespace DAN_XLIV_Dejan_Prodanovic.View
             InitializeComponent();
             DataContext = new MenuViewModel(this);
         }
+
+        public MenuView(string JMBG)
+        {
+            InitializeComponent();
+            DataContext = new MenuViewModel(this,JMBG);
+        }
     }
 }

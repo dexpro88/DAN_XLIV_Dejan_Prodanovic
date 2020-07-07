@@ -14,15 +14,25 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
     class ShowOrderViewModel:ViewModelBase
     {
         ShowOrderView orderView = new ShowOrderView();
-        
+        private string JMBG;
         #region Constructors
         public ShowOrderViewModel(ShowOrderView orderViewOpen, List<PizzaClass> pizzas, decimal totalAmountPar)
         {
             orderView = orderViewOpen;
             PizzaList = pizzas;
 
-            totalAmount = String.Format("Total order amount: {0}", totalAmountPar);
+            totalAmount = String.Format("Total order price: {0}", totalAmountPar);
+         
+        }
 
+        public ShowOrderViewModel(ShowOrderView orderViewOpen, List<PizzaClass> pizzas, decimal totalAmountPar, string JMBG)
+        {
+            orderView = orderViewOpen;
+            PizzaList = pizzas;
+
+            totalAmount = String.Format("Total order price: {0}", totalAmountPar);
+            this.JMBG = JMBG;
+            
         }
         #endregion
 
