@@ -61,23 +61,15 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
                     view.Close();
                     guestMain.Show();
                     return;
+                }else if(UserName.Equals("Zaposleni") && password.Equals("Zaposleni"))
+                {
+
                 }
-                //else
-                //{
-                //    List<Employee>employees = employeeService.GetAllEmployees();
-
-                //    foreach (var employee in employees)
-                //    {
-
-                //        if (employee.Username.Equals(userName) && employee.Password.Equals(password))
-                //        {
-
-                //            MenagerMainView menagerMainView = new MenagerMainView();
-                //            menagerMainView.Show();
-                //            view.Close();
-                //        }
-                //    }
-                //}
+                else
+                {
+                    MessageBox.Show("Wrong usename or password");
+                }
+               
 
 
             }
@@ -88,16 +80,6 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         }
         private bool CanSubmitCommandExecute()
         {
-
-
-            //if (string.IsNullOrEmpty(UserName))
-            //{
-            //    return false;
-            //}
-            //else
-            //{
-            //    return true;
-            //}
             return true;
         }
 
