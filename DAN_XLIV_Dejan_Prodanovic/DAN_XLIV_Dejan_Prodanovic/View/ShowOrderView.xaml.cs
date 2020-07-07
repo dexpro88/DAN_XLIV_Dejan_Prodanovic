@@ -25,7 +25,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.View
         {
             InitializeComponent();
         }
-        public ShowOrderView(List<PizzaClass> pizzas, decimal totalAmount,string JMBG)
+        public ShowOrderView(List<tblPizzaOrder> pizzas, decimal totalAmount,string JMBG)
         {
             InitializeComponent();
             DataContext = new ShowOrderViewModel(this, pizzas, totalAmount,JMBG);

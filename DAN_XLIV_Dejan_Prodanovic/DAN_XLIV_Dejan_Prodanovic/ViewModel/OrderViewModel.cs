@@ -1,5 +1,6 @@
 ﻿using DAN_XLIV_Dejan_Prodanovic.Command;
 using DAN_XLIV_Dejan_Prodanovic.Pizza;
+using DAN_XLIV_Dejan_Prodanovic.Service;
 using DAN_XLIV_Dejan_Prodanovic.View;
 using DataAccesLayer.Model;
 using System;
@@ -15,21 +16,23 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
     class OrderViewModel:ViewModelBase
     {
         OrderView orderView = new OrderView();
+        IPizzeriaService pizzaService;
         private string JMBG;
  
         #region Constructors
-        public OrderViewModel(OrderView orderViewOpen, List<PizzaClass>pizzas,decimal totalAmountPar,string JMBG)
+        public OrderViewModel(OrderView orderViewOpen, List<tblPizzaOrder> pizzas,decimal totalAmountPar,string JMBG)
         {
             orderView = orderViewOpen;
             PizzaList = pizzas;
             
             totalAmount = String.Format("Total order price: {0}", totalAmountPar);
             this.JMBG = JMBG;
+            pizzaService = new PizzeriaService();
         }
         #endregion
 
-        private List<PizzaClass> pizzaList;
-        public List<PizzaClass> PizzaList
+        private List<tblPizzaOrder> pizzaList;
+        public List<tblPizzaOrder> PizzaList
         {
             get
             {
@@ -87,15 +90,22 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                Order order = new Order();
-                order.ID = 1;
-                order.JMBG = JMBG;
-                order.DateAndTimeOfOrder = DateTime.Now;
-                order.Status = "W";
                 OrderConfirmed = true;
-                foreach (var pizza in pizzaList)
+                tblOrder newOrder = new tblOrder();
+                newOrder.JMBG = JMBG;
+                newOrder.OrderStatus = "W";
+                newOrder.DateAndTimeOfOrder = DateTime.Now;
+
+                newOrder = pizzaService.AddOrder(newOrder);
+
+                foreach (var pizza in PizzaList)
                 {
-                   
+                    tblPizzaOrder pizzaOrder = new tblPizzaOrder();
+                    pizzaOrder.PizzaID = pizza.tblPizza.ID;
+                    pizzaOrder.OrderID = newOrder.ID;
+                    pizzaOrder.Amount = pizza.Amount;
+
+                    pizzaService.AddPizzaOrder(pizzaOrder);
                 }
                 orderView.Close();
 

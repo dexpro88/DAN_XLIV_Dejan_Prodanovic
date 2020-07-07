@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DAN_XLIV_Dejan_Prodanovic.View"
         mc:Ignorable="d"
         Title="MenuView"    WindowStartupLocation="CenterScreen"
-        Height="350"
+        Height="400"
         Width="600"
         Background="#2e3137">
     <Window.Resources>
@@ -62,7 +62,7 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Pizza type"
-                                    Binding="{Binding Name}" />
+                                    Binding="{Binding PizzaType}" />
                 <DataGridTextColumn Header="Price"
                                     Binding="{Binding Price}" />
 

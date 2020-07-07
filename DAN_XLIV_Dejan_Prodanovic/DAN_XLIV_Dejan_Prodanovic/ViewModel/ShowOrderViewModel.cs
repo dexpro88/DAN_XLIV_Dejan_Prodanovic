@@ -16,7 +16,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         ShowOrderView orderView = new ShowOrderView();
         private string JMBG;
         #region Constructors
-        public ShowOrderViewModel(ShowOrderView orderViewOpen, List<PizzaClass> pizzas, decimal totalAmountPar)
+        public ShowOrderViewModel(ShowOrderView orderViewOpen, List<tblPizzaOrder> pizzas, decimal totalAmountPar)
         {
             orderView = orderViewOpen;
             PizzaList = pizzas;
@@ -25,7 +25,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
          
         }
 
-        public ShowOrderViewModel(ShowOrderView orderViewOpen, List<PizzaClass> pizzas, decimal totalAmountPar, string JMBG)
+        public ShowOrderViewModel(ShowOrderView orderViewOpen, List<tblPizzaOrder> pizzas, decimal totalAmountPar, string JMBG)
         {
             orderView = orderViewOpen;
             PizzaList = pizzas;
@@ -36,8 +36,8 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         }
         #endregion
 
-        private List<PizzaClass> pizzaList;
-        public List<PizzaClass> PizzaList
+        private List<tblPizzaOrder> pizzaList;
+        public List<tblPizzaOrder> PizzaList
         {
             get
             {

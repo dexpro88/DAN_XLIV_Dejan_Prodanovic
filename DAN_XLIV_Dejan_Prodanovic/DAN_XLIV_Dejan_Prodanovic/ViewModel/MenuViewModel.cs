@@ -1,5 +1,6 @@
 ﻿using DAN_XLIV_Dejan_Prodanovic.Command;
 using DAN_XLIV_Dejan_Prodanovic.Pizza;
+using DAN_XLIV_Dejan_Prodanovic.Service;
 using DAN_XLIV_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
@@ -17,27 +18,30 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         private decimal totalAmountNum = 0;
         private bool orderConfirmed = false;
         private string JMBG;
+        IPizzeriaService pizzeriaService;
 
         #region Constructors
         public MenuViewModel(MenuView menuViewOpen)
         {
             menuView = menuViewOpen;
-            PizzaList = PizzaMetod.GetPizzas();
-            orederedPizzas = new List<PizzaClass>();
+            pizzeriaService = new PizzeriaService();
+            PizzaList = pizzeriaService.GetPizzas();
+            orederedPizzas = new List<tblPizzaOrder>();
         }
 
         public MenuViewModel(MenuView menuViewOpen,string JMBG)
         {
             menuView = menuViewOpen;
-            PizzaList = PizzaMetod.GetPizzas();
-            orederedPizzas = new List<PizzaClass>();
+            pizzeriaService = new PizzeriaService();
+            PizzaList = pizzeriaService.GetPizzas();
+            orederedPizzas = new List<tblPizzaOrder>();
             this.JMBG = JMBG;
         }
         #endregion
 
         #region Properties
-        private PizzaClass selectedPizza;
-        public PizzaClass SelectedPizza
+        private tblPizza selectedPizza;
+        public tblPizza SelectedPizza
         {
             get
             {
@@ -108,8 +112,8 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         }
 
 
-        private List<PizzaClass> pizzaList;
-        public List<PizzaClass> PizzaList
+        private List<tblPizza> pizzaList;
+        public List<tblPizza> PizzaList
         {
             get
             {
@@ -122,8 +126,8 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             }
         }
 
-        private List<PizzaClass> orederedPizzas;
-        public List<PizzaClass> OrederedPizzas
+        private List<tblPizzaOrder> orederedPizzas;
+        public List<tblPizzaOrder> OrederedPizzas
         {
             get
             {
@@ -156,35 +160,42 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                PizzaClass thisPizza = FindPizzaByName(SelectedPizza.Name);
+                tblPizzaOrder thisPizza = FindPizzaByName(SelectedPizza.PizzaType);
 
-                if (thisPizza!=null && currentAmount==0)
+                if (thisPizza != null && currentAmount == 0)
                 {
-                    CurrentAmount = thisPizza.Amount;
+                    CurrentAmount = (int)thisPizza.Amount;
                 }
                 if (CurrentAmount <=0 || CurrentAmount > 50)
                 {
                     MessageBox.Show("You have to order between 1 and 50 pizzas of one type");
                     return;
                 }
-                
-                SelectedPizza.Amount = currentAmount;
-                
-                PizzaClass newPizza = new PizzaClass(SelectedPizza.Name, SelectedPizza.Price) { Amount = currentAmount};
-               
-                if (thisPizza!=null)
+                tblPizzaOrder newOrder = new tblPizzaOrder();
+                newOrder.PizzaID = SelectedPizza.ID;
+                newOrder.tblPizza = SelectedPizza;
+                //newOrder.tblPizza.Price = SelectedPizza.Price;
+
+                newOrder.Amount = CurrentAmount;
+                //MessageBox.Show(newOrder.tblPizza.PizzaType);
+                //SelectedPizza.Amount = currentAmount;
+
+                //PizzaClass newPizza = new PizzaClass(SelectedPizza.Name, SelectedPizza.Price) { Amount = currentAmount};
+
+                if (thisPizza != null)
                 {
                     //MessageBox.Show(thisPizza.Amount.ToString());
-                    totalAmountNum -= (thisPizza.Amount * thisPizza.Price);
+                    totalAmountNum -= ((int)thisPizza.Amount * (decimal)thisPizza.tblPizza.Price);
                     OrederedPizzas.Remove(thisPizza);
                 }
 
-                
-                totalAmountNum += (CurrentAmount * SelectedPizza.Price);
-                OrederedPizzas.Add(newPizza);
+
+                totalAmountNum += (CurrentAmount * (int)SelectedPizza.Price);
+                //OrederedPizzas.Add(newPizza);
+                orederedPizzas.Add(newOrder);
                  
                 TotalAmount = string.Format("Total order price {0}", totalAmountNum);
-                string outputStr = string.Format("Your order will contain {0} {1}", CurrentAmount, SelectedPizza.Name);
+                string outputStr = string.Format("Your order will contain {0} {1}", CurrentAmount, SelectedPizza.PizzaType);
                 CurrentAmount = 0;
                 MessageBox.Show(outputStr);
 
@@ -380,11 +391,11 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         #endregion
 
         #region Methods
-        private PizzaClass FindPizzaByName(string name)
+        private tblPizzaOrder FindPizzaByName(string name)
         {
             foreach (var pizza in orederedPizzas)
             {
-                if (pizza.Name.Equals(name))
+                if (pizza.tblPizza.PizzaType.Equals(name))
                 {
                     return pizza;
                 }

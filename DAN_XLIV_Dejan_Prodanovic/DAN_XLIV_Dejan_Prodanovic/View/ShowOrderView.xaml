@@ -53,9 +53,9 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Pizza type"
-                                    Binding="{Binding Name}" />
+                                    Binding="{Binding tblPizza.PizzaType}" />
                 <DataGridTextColumn Header="Price"
-                                    Binding="{Binding Price}" />
+                                    Binding="{Binding tblPizza.Price}" />
 
                 <DataGridTextColumn Header="Amount"
                                     Binding="{Binding Amount}" />

@@ -72,12 +72,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PizzeriaDataBaseEntities.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="PizzeriaDataBaseEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PizzeriaDataBaseEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="PizzeriaDataBaseEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PizzeriaDataBaseEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Service\IPizzeriaService.cs" />
+    <Compile Include="Service\PizzeriaService.cs" />
+    <Compile Include="tblOrder.cs">
+      <DependentUpon>PizzeriaDataBaseEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPizza.cs">
+      <DependentUpon>PizzeriaDataBaseEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPizzaOrder.cs">
+      <DependentUpon>PizzeriaDataBaseEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Validation\ValidationClass.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\GuestMainViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
@@ -186,6 +203,12 @@
     <Content Include="PizzeriaDataBaseEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PizzeriaDataBaseEntities.Context.cs</LastGenOutput>
+      <DependentUpon>PizzeriaDataBaseEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="PizzeriaDataBaseEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PizzeriaDataBaseEntities.edmx</DependentUpon>
+      <LastGenOutput>PizzeriaDataBaseEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
