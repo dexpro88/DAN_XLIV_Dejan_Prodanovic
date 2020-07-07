@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAN_XLIV_Dejan_Prodanovic.Pizza
 {
-    class PizzaClass
+    public  class PizzaClass
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -21,7 +21,7 @@ namespace DAN_XLIV_Dejan_Prodanovic.Pizza
         {
             Name = name;
             Price = price;
-            Amount = 22;
+           
         }
     }
 }

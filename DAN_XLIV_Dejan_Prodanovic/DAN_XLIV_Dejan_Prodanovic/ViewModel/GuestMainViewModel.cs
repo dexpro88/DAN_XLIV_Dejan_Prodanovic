@@ -39,9 +39,9 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                MenuView menuView = new MenuView();
-               
-                menuView.ShowDialog();
+                MenuView menuView = new MenuView();           
+                menuView.Show();
+                guestMainView.Close();
             }
             catch (Exception ex)
             {
