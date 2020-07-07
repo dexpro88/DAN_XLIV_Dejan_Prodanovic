@@ -22,6 +22,37 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         #endregion
 
         #region Commands
+        private ICommand showMenu;
+        public ICommand ShowMenu
+        {
+            get
+            {
+                if (showMenu == null)
+                {
+                    showMenu = new RelayCommand(param => ShowMenuExecute(), param => CanShowMenuExecute());
+                }
+                return showMenu;
+            }
+        }
+
+        private void ShowMenuExecute()
+        {
+            try
+            {
+                MenuView menuView = new MenuView();
+               
+                menuView.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanShowMenuExecute()
+        {
+            return true;
+        }
+
         private ICommand logoutCommmand;
         public ICommand LogoutCommmand
         {
