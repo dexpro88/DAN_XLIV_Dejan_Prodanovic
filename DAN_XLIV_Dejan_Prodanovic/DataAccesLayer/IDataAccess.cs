@@ -12,5 +12,6 @@ namespace DataAccesLayer
         void AddOrder(Order order);
         void DeleteOrder(int id);
         void ApproveOrder(int id);
+        List<Order> GetOrdersOfGuest(string JMBG);
     }
 }

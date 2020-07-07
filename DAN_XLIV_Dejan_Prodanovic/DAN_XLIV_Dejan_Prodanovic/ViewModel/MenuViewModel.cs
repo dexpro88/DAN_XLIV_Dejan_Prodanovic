@@ -69,6 +69,34 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             }
         }
 
+        private Visibility viewMakeOrder = Visibility.Visible;
+        public Visibility ViewMakeOrder
+        {
+            get
+            {
+                return viewMakeOrder;
+            }
+            set
+            {
+                viewMakeOrder = value;
+                OnPropertyChanged("ViewMakeOrder");
+            }
+        }
+
+        private Visibility viewShowOrder = Visibility.Collapsed;
+        public Visibility ViewShowOrder
+        {
+            get
+            {
+                return viewShowOrder;
+            }
+            set
+            {
+                viewShowOrder = value;
+                OnPropertyChanged("ViewShowOrder");
+            }
+        }
+
 
         private List<PizzaClass> pizzaList;
         public List<PizzaClass> PizzaList
@@ -183,7 +211,14 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             {
                 OrderView orderView = new OrderView(orederedPizzas, totalAmountNum);
                 orderView.ShowDialog();
-                
+
+                if ((orderView.DataContext as OrderViewModel).OrderConfirmed == true)
+                {
+                    ViewMakeOrder = Visibility.Hidden;
+                    ViewShowOrder = Visibility.Visible;
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -191,6 +226,43 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             }
         }
         private bool CanMakeOrderExecute()
+        {
+            if (!orederedPizzas.Any())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private ICommand showOrder;
+        public ICommand ShowOrder
+        {
+            get
+            {
+                if (showOrder == null)
+                {
+                    showOrder = new RelayCommand(param => ShowOrderExecute(), param => CanShowOrderExecute());
+                }
+                return showOrder;
+            }
+        }
+
+        private void ShowOrderExecute()
+        {
+            try
+            {
+                ShowOrderView orderView = new ShowOrderView(orederedPizzas, totalAmountNum);
+                orderView.ShowDialog();
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanShowOrderExecute()
         {
             if (!orederedPizzas.Any())
             {

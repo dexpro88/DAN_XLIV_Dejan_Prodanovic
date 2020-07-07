@@ -103,11 +103,14 @@
 
             <TextBlock Foreground="White" Text="{Binding TotalAmount}"></TextBlock>
         </StackPanel>
+       
         <StackPanel Grid.Row="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Button Width="100" Command="{Binding MakeOrder}"
+            <Button Visibility="{Binding ViewMakeOrder, UpdateSourceTrigger=PropertyChanged}" Width="100" Command="{Binding MakeOrder}"
                     Content="Make Order" />
+            <Button Visibility="{Binding ViewShowOrder, UpdateSourceTrigger=PropertyChanged}" Width="100" Command="{Binding ShowOrder}"
+                    Content="Show Order" />
             <Button Command="{Binding Close}"
                     Content="Close" />
         </StackPanel>

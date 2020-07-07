@@ -11,16 +11,16 @@ using System.Windows.Input;
 
 namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
 {
-    class OrderViewModel:ViewModelBase
+    class ShowOrderViewModel:ViewModelBase
     {
-        OrderView orderView = new OrderView();
-     
+        ShowOrderView orderView = new ShowOrderView();
+        
         #region Constructors
-        public OrderViewModel(OrderView orderViewOpen, List<PizzaClass>pizzas,decimal totalAmountPar)
+        public ShowOrderViewModel(ShowOrderView orderViewOpen, List<PizzaClass> pizzas, decimal totalAmountPar)
         {
             orderView = orderViewOpen;
             PizzaList = pizzas;
-            
+
             totalAmount = String.Format("Total order amount: {0}", totalAmountPar);
 
         }
@@ -40,20 +40,6 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             }
         }
 
-        private bool orderConfirmed;
-        public bool OrderConfirmed
-        {
-            get
-            {
-                return orderConfirmed;
-            }
-            set
-            {
-                orderConfirmed = value;
-                OnPropertyChanged("OrderConfirmed");
-            }
-        }
-
         private string totalAmount;
         public string TotalAmount
         {
@@ -68,37 +54,6 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
             }
         }
 
-        private ICommand confirmOrder;
-        public ICommand ConfirmOrder
-        {
-            get
-            {
-                if (confirmOrder == null)
-                {
-                    confirmOrder = new RelayCommand(param => ConfirmOrderExecute(), param => CanConfirmOrderExecute());
-                }
-                return confirmOrder;
-            }
-        }
-
-        private void ConfirmOrderExecute()
-        {
-            try
-            {
-                OrderConfirmed = true;
-                orderView.Close();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-        private bool CanConfirmOrderExecute()
-        {
-            return true;
-        }
-    
         private ICommand close;
         public ICommand Close
         {
@@ -131,3 +86,4 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
         }
     }
 }
+

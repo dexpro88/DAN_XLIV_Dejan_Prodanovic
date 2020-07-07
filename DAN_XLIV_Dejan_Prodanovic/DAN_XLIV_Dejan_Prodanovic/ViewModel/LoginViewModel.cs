@@ -63,7 +63,9 @@ namespace DAN_XLIV_Dejan_Prodanovic.ViewModel
                     return;
                 }else if(UserName.Equals("Zaposleni") && password.Equals("Zaposleni"))
                 {
-
+                    EmployeeView employeeView = new EmployeeView();
+                    view.Close();
+                    employeeView.Show();
                 }
                 else
                 {

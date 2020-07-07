@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAN_XLIV_Dejan_Prodanovic", "DAN_XLIV_Dejan_Prodanovic\DAN_XLIV_Dejan_Prodanovic.csproj", "{6BC5DB0A-8216-43E8-89F8-55708C96C5CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccesLayer", "DataAccesLayer\DataAccesLayer.csproj", "{614B279F-14E9-44F1-BC27-455C484BC93B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6BC5DB0A-8216-43E8-89F8-55708C96C5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BC5DB0A-8216-43E8-89F8-55708C96C5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BC5DB0A-8216-43E8-89F8-55708C96C5CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{614B279F-14E9-44F1-BC27-455C484BC93B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{614B279F-14E9-44F1-BC27-455C484BC93B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{614B279F-14E9-44F1-BC27-455C484BC93B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{614B279F-14E9-44F1-BC27-455C484BC93B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
